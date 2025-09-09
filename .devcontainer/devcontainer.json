@@ -39,9 +39,10 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
+                "EditorConfig.EditorConfig",
 				"ms-dotnettools.csdevkit",
-				"EditorConfig.EditorConfig",
-				"ms-azuretools.vscode-containers"
+				"ms-azuretools.vscode-containers",
+                "ms-azuretools.vscode-bicep"
 			]
 		}
 	}
