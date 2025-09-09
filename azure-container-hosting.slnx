@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Demo.BeerVoting.Backend/Demo.BeerVoting.Backend.csproj" />
+    <Project Path="src/Demo.BeerVoting.Frontend/Demo.BeerVoting.Frontend.csproj" />
+  </Folder>
+</Solution>

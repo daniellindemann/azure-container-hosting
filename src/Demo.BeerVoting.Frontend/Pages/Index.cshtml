@@ -1,0 +1,90 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@if (Model.FavoriteBeers == null)
+{
+    <h2>No beers found.</h2>
+}
+else
+{
+    <form method="post">
+    <table style="width: 100%;" class="beerTable">
+        <thead>
+            <tr>
+                <th>Beer</th>
+                <th>Rating</th>
+                <th class="rateButtonContainerHeader">Rate beer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var beer in Model.FavoriteBeers)
+                {
+                    <tr>
+                        @if (string.IsNullOrEmpty(beer.Nickname))
+                        {
+                            <td>
+                                <span>@beer.Name</span><br />
+                                <span class="text-muted"><i>by</i> @beer.Brewery</span>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <span>@beer.Name (@beer.Nickname)</span><br />
+                                <span class="text-muted"><i>by</i> @beer.Brewery</span>
+                            </td>
+                        }
+                        <td>@beer.Score</td>
+                        <td class="rateButtonContainer">
+                            <input type="submit" value="1" asp-page-handler="Rate" asp-route-id="@beer.Id" asp-route-value="1"
+                                class="btn btn-primary rateButton" />
+                            <input type="submit" value="2" asp-page-handler="Rate" asp-route-id="@beer.Id" asp-route-value="2"
+                                class="btn btn-primary rateButton" />
+                            <input type="submit" value="3" asp-page-handler="Rate" asp-route-id="@beer.Id" asp-route-value="3"
+                                class="btn btn-primary rateButton" />
+                            <input type="submit" value="4" asp-page-handler="Rate" asp-route-id="@beer.Id" asp-route-value="4"
+                                class="btn btn-primary rateButton" />
+                            <input type="submit" value="5" asp-page-handler="Rate" asp-route-id="@beer.Id" asp-route-value="5"
+                                class="btn btn-primary rateButton" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
+}
+
+<div class="qr-container">
+    <div class="qr-toggle"><a href="#" onclick="return false;">Show QR Code</a></div>
+    <div class="qr-code" style="display: none;">@Html.Raw(Model.GetQrCodeForUrl())</div>
+</div>
+
+@section Css {
+    .qr-container {
+        margin: 40px 0 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".qr-container").forEach(function (element) {
+                element.addEventListener("click", function () {
+                    var qrCode = document.querySelector(".qr-code");
+                    if (qrCode.style.display === "none") {
+                        qrCode.style.display = "block";
+                    } else {
+                        qrCode.style.display = "none";
+                    }
+                });
+            });
+        });
+    </script>
+}
