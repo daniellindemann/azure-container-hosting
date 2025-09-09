@@ -1,0 +1,22 @@
+---
+
+name: azure-container-hosting
+
+services:
+  backend:
+    image: beer-rating-backend:9.0.0
+    container_name: beer-rating-backend
+    restart: unless-stopped
+    ports:
+    - "5178:5178"
+    environment:
+    - "Database__UseInMemoryDatabase=true"
+  frontend:
+    image: beer-rating-frontend:9.0.0
+    container_name: beer-rating-frontend
+    restart: unless-stopped
+    ports:
+    - "5179:5179"
+    environment:
+    - "Backend__HostUrl=http://backend:5178"
+
