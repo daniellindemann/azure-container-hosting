@@ -20,3 +20,6 @@ services:
     environment:
     - "Backend__HostUrl=http://backend:5178"
 
+networks:
+  default:
+    name: azure-container-hosting
