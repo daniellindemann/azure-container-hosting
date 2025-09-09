@@ -39,10 +39,16 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-
 var app = builder.Build();
 
 // seed data
+// check for --seed parameter
+if (args.Contains("--seed") || args.Contains("-s"))
+{
+    await app.SeedBeerData(false);
+    Environment.Exit(0);
+}
+
 if (builder.Configuration.GetValue<bool>("Database:UseDataSeeding"))
 {
     bool useAutoMigration = builder.Configuration.GetValue<bool>("Database:UseAutoMigration");
