@@ -1,0 +1,119 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md.
+            "name": "Backend - .NET Core Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "backend-build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/Demo.BeerRating.Backend/bin/Debug/net9.0/Demo.BeerRating.Backend.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Demo.BeerRating.Backend",
+            "stopAtEntry": false,
+            "launchSettingsProfile": "http",
+            // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+                "uriFormat": "%s/swagger",
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            },
+            "logging": {
+                "moduleLoad": false
+            },
+            "presentation": {
+                "hidden": false,
+                "group": "20 - apps",
+                "order": 20
+            }
+        },
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md.
+            "name": "Frontend - .NET Core Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "frontend-build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/Demo.BeerRating.Frontend/bin/Debug/net9.0/Demo.BeerRating.Frontend.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Demo.BeerRating.Frontend",
+            "stopAtEntry": false,
+            "launchSettingsProfile": "http",
+            // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            },
+            "logging": {
+                "moduleLoad": false
+            },
+            "presentation": {
+                "hidden": false,
+                "group": "20 - apps",
+                "order": 10
+            }
+        },
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
+            "name": "BeerQuotes - .NET Core Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "console-beerquotes-build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/Demo.BeerRating.Console.BeerQuotes/bin/Debug/net9.0/Demo.BeerRating.Console.BeerQuotes.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Demo.BeerRating.Console.BeerQuotes",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "logging": {
+                "moduleLoad": false
+            },
+            "presentation": {
+                "hidden": false,
+                "group": "20 - sidecars",
+                "order": 20
+            }
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Full app",
+            "configurations": [
+                "Backend - .NET Core Launch (web)",
+                "Frontend - .NET Core Launch (web)",
+                "BeerQuotes - .NET Core Launch (console)"
+            ],
+            "presentation": {
+                "hidden": false,
+                "group": "10 - compounds",
+                "order": 1
+            },
+            "stopAll": true
+        }
+    ]
+}

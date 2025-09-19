@@ -1,0 +1,43 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.1.2 Chrome/138.0.7204.243 Electron/37.4.0 Safari/537.36" version="28.1.2">
+  <diagram name="Page-1" id="uAZ9nth019gWn-kS0ed0">
+    <mxGraphModel dx="1042" dy="722" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="oo-UGdluL4o6jhIyqPri-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=3;endArrow=block;endFill=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" source="oo-UGdluL4o6jhIyqPri-1" target="oo-UGdluL4o6jhIyqPri-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oo-UGdluL4o6jhIyqPri-1" value="Demo.BeerRating.Frontend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=bottom;spacingBottom=20;" parent="1" vertex="1">
+          <mxGeometry x="120" y="220" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="oo-UGdluL4o6jhIyqPri-2" value="Demo.BeerRating.Backend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=bottom;spacingBottom=20;" parent="1" vertex="1">
+          <mxGeometry x="410" y="220" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="oo-UGdluL4o6jhIyqPri-3" value="Backend__HostUrl" style="text;html=1;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="120" y="330" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="oo-UGdluL4o6jhIyqPri-4" value="ConnectionStrings_Beer" style="text;html=1;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="410" y="330" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="oo-UGdluL4o6jhIyqPri-6" value="" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/Docker.svg;" parent="1" vertex="1">
+          <mxGeometry x="185" y="230" width="50" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="oo-UGdluL4o6jhIyqPri-7" value="" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/Docker.svg;" parent="1" vertex="1">
+          <mxGeometry x="475" y="230" width="50" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="oo-UGdluL4o6jhIyqPri-8" value="Database" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=bottom;spacingBottom=2;" parent="1" vertex="1">
+          <mxGeometry x="690" y="230" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="oo-UGdluL4o6jhIyqPri-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=2;dashed=1;dashPattern=8 8;" parent="1" source="oo-UGdluL4o6jhIyqPri-2" target="oo-UGdluL4o6jhIyqPri-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="JdTmXxM68kQ7qQvUQ8Gl-1" value="Demo.BeerRating.Console.BeerQuotes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=bottom;spacingBottom=20;" vertex="1" parent="1">
+          <mxGeometry x="85" y="400" width="250" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="JdTmXxM68kQ7qQvUQ8Gl-2" value="" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/Docker.svg;" vertex="1" parent="1">
+          <mxGeometry x="185" y="409.5" width="50" height="41" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

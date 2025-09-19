@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: beer-rating-backend
+  name: beer-rating-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: beer-rating-backend
+  template:
+    metadata:
+      labels:
+        app: beer-rating-backend
+    spec:
+      containers:
+      - image: crazhsharedqdqzaqsx.azurecr.io/daniellindemann/beer-rating-backend:9.0.0
+        name: beer-rating-backend
+        ports:
+        - containerPort: 5179
+        env:
+        - name: Database__UseInMemoryDatabase
+          value: 'false'
+        - name: Database__UseAutoMigration
+          value: 'false'
+        - name: Database__UseDataSeeding
+          value: 'true'
+        - name: ConnectionStrings__Beer
+          valueFrom:
+            secretKeyRef:
+              name: appsecrets
+              key: connection-string-beer-rating
+        volumeMounts:
+        - name: secrets-keyvault
+          mountPath: '/mnt/keyvault'
+          readOnly: true
+        resources:
+          requests:
+            cpu: 100m
+            memory: 32Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+      - image: crazhsharedqdqzaqsx.azurecr.io/daniellindemann/beer-rating-console-beerquotes:9.0.0
+        name: beer-rating-console-beerquotes
+        env:
+        - name: QuoteSleepInSeconds
+          value: '30'
+        resources:
+          requests:
+            cpu: 100m
+            memory: 16Mi
+          limits:
+            cpu: 200m
+            memory: 32Mi
+      volumes:
+      - name: secrets-keyvault
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "azure-keyvault-backend"

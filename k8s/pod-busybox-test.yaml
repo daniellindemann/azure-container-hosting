@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: busybox
+  name: busybox
+spec:
+  containers:
+  - image: busybox
+    name: busybox
+    command:
+    - '/bin/sleep'
+    - '10000'
+    env:
+    - name: ConnectionStrings__Beer
+      valueFrom:
+        secretKeyRef:
+          name: appsecrets
+          key: connection-string-beer-rating
+    volumeMounts:
+    - name: secrets-keyvault
+      mountPath: '/mnt/keyvault'
+      readOnly: true
+    resources:
+      requests:
+        cpu: 100m
+        memory: 16Mi
+      limits:
+        cpu: 200m
+        memory: 32Mi
+  volumes:
+  - name: secrets-keyvault
+    csi:
+      driver: secrets-store.csi.k8s.io
+      readOnly: true
+      volumeAttributes:
+        secretProviderClass: "azure-keyvault-backend"
+  restartPolicy: Never
+
+# Validate key vault:
+#
+# - kubectl exec busybox -- ls /mnt/keyvault
+# - kubectl exec busybox -- cat /mnt/keyvault/connection-string-beer-rating
+# - kubectl exec busybox -- printenv | grep ConnectionStrings__Beer

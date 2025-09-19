@@ -1,0 +1,58 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/* application special */
+
+.beerTable {
+  width: 100%;
+}
+
+.beerTable tr {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.beerTable tbody tr:last-child {
+  border-bottom: 0px;
+}
+
+.rateButtonContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+}
+
+.rateButton {
+  margin: 4px 4px;
+}
+
+@media only screen and (max-width: 575px) {
+  .rateButtonContainer {
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (min-width: 575px) {
+  .rateButtonContainerHeader {
+    width: 220px;
+  }
+}
