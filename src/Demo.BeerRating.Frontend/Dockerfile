@@ -1,6 +1,5 @@
 # 🚨🚨🚨
-# Dockerfile needs to be used with context of the mono repo
-# see ../../Readme.md#build-image-for-frontend
+# Use bake file in project root to build container image
 
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS base
 WORKDIR /app
