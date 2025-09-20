@@ -17,6 +17,7 @@ spec:
       containers:
       - image: crazhsharedqdqzaqsx.azurecr.io/daniellindemann/beer-rating-backend:9.0.0
         name: beer-rating-backend
+        imagePullPolicy: Always
         ports:
         - containerPort: 5179
         env:
@@ -44,6 +45,7 @@ spec:
             memory: 256Mi
       - image: crazhsharedqdqzaqsx.azurecr.io/daniellindemann/beer-rating-console-beerquotes:9.0.0
         name: beer-rating-console-beerquotes
+        imagePullPolicy: Always
         env:
         - name: QuoteSleepInSeconds
           value: '30'
