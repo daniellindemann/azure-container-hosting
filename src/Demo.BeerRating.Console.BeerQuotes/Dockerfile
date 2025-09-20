@@ -1,3 +1,7 @@
+# 🚨🚨🚨
+# Dockerfile needs to be used with context of the mono repo
+# see ../../Readme.md#build-image-for-backend
+
 FROM mcr.microsoft.com/dotnet/runtime:9.0-alpine AS base
 WORKDIR /app
 USER app
