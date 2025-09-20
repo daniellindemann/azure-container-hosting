@@ -11,6 +11,7 @@ aca_rg_starts_with='rg-azh-demo3-aca'
 aks_rg_starts_with='rg-azh-demo4-aks'
 webapp_vnet_rg_starts_with='rg-azh-demo5-webapps-vnet'
 shared_rg_starts_with='rg-azh-shared'
+kv_starts_with='kv-azh-shared'
 
 echo "Get resource groups"
 webapp_rg_name=$(az group list --query "[?starts_with(name, '${webapp_rg_starts_with}')].name | [0]" -o tsv)
@@ -51,6 +52,12 @@ else
     echo "  Shared RG: (not found)"
 fi
 
+echo "Get purgable resources in Shared RG"
+if [[ -n "$shared_rg_name" ]]; then
+    kv_name=$(az keyvault list --resource-group "$shared_rg_name" --query "[?starts_with(name, '${kv_starts_with}')].name | [0]" -o tsv)
+fi
+echo "Feteched purgable resources in Shared RG"
+
 echo "Deleting resource groups and waiting for completion ..."
 if [[ -n "$webapp_rg_name" ]]; then
     echo "  Deleting Web Apps RG: $webapp_rg_name"
@@ -76,4 +83,13 @@ if [[ -n "$shared_rg_name" ]]; then
     echo "  Deleting Shared RG: $shared_rg_name"
     az group delete --name "$shared_rg_name" --yes
 fi
+echo "Deleted resource groups."
+
+echo "Purge Key Vault (if exists) ..."
+if [[ -n "$kv_name" ]]; then
+    echo "  Purging Key Vault: $kv_name"
+    az keyvault purge --name "$kv_name"
+fi
+echo "Purged Key Vault (if existed)."
+
 echo "Cleanup completed."
