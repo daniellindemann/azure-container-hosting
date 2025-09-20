@@ -7,6 +7,10 @@ script_dir=$(dirname "$0")
 # script variables
 aks_starts_with='aks-azh-demo4-aks'
 keyvault_starts_with='kv-azh-shared'
+acr_starts_with='crazhshared'
+backend_image='daniellindemann/beer-rating-backend:9.0.0'
+frontend_image='daniellindemann/beer-rating-frontend:9.0.0'
+console_image='daniellindemann/beer-rating-console-beerquotes:9.0.0'
 
 echo "🔎 Get AKS cluster starting with '${aks_starts_with}'"
 aks_json_data=$(az aks list --query "[?starts_with(name, '${aks_starts_with}')].{name: name, resourceGroup: resourceGroup, keyVaultvIdentity: addonProfiles.azureKeyvaultSecretsProvider.identity}[0]" -o json)
@@ -20,6 +24,13 @@ keyvault_json_data=$(az keyvault list --query "[?starts_with(name, '${keyvault_s
 keyvault_name=$(echo $keyvault_json_data | jq -r '.name')
 keyvault_resourceGroup=$(echo $keyvault_json_data | jq -r '.resourceGroup')
 echo "🐕 Retrieved '${keyvault_name}' on resource group '${keyvault_resourceGroup}'"
+
+echo "🔎 Get container registry starting with '${acr_starts_with}'"
+acr_json_data=$(az acr list --query "[?starts_with(name, '${acr_starts_with}')].{name: name, resourceGroup: resourceGroup, loginServer: loginServer}[0]" -o json)
+acr_name=$(echo $acr_json_data | jq -r '.name')
+acr_resourceGroup=$(echo $acr_json_data | jq -r '.resourceGroup')
+acr_loginServer=$(echo $acr_json_data | jq -r '.loginServer')
+echo "🐕 Retrieved '${acr_name}' on resource group '${acr_resourceGroup}'"
 
 echo "Installing aks cli tools"
 if [ ! -x /usr/local/bin/kubelogin ]; then
@@ -69,9 +80,18 @@ echo "$replacedKeyVaultName" | kubectl apply -f -
 echo "Secret provider class configured"
 
 echo "Apply deployments and services"
-kubectl apply -f $script_dir/../k8s/deployment-backend.yml
+# kubectl apply -f $script_dir/../k8s/deployment-backend.yml
+# replace the image name in the deployment yaml file of the backend with the one from container registry
+backendDeploymentYaml="$(cat "$script_dir/../k8s/deployment-backend.yml")"
+replacedBackendImage=$(echo "$backendDeploymentYaml" | yq ".spec.template.spec.containers[0].image = \"${acr_loginServer}/${backend_image}\"")
+replacedConsoleImage=$(echo "$replacedBackendImage" | yq ".spec.template.spec.containers[1].image = \"${acr_loginServer}/${console_image}\"")
+echo "$replacedConsoleImage" | kubectl apply -f -
 kubectl apply -f $script_dir/../k8s/service-backend.yaml
-kubectl apply -f $script_dir/../k8s/deployment-frontend.yml
+# kubectl apply -f $script_dir/../k8s/deployment-frontend.yml
+# replace the image name in the deployment yaml file of the frontend with the one from container registry
+frontendDeploymentYaml="$(cat "$script_dir/../k8s/deployment-frontend.yml")"
+replacedFrontendImage=$(echo "$frontendDeploymentYaml" | yq ".spec.template.spec.containers[0].image = \"${acr_loginServer}/${frontend_image}\"")
+echo "$replacedFrontendImage" | kubectl apply -f -
 kubectl apply -f $script_dir/../k8s/service-frontend.yaml
 echo "Deployments and services applied"
 

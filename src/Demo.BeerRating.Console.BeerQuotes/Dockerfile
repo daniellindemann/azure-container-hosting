@@ -1,3 +1,6 @@
+# 🚨🚨🚨
+# Use bake file in project root to build container image
+
 FROM mcr.microsoft.com/dotnet/runtime:9.0-alpine AS base
 WORKDIR /app
 USER app
