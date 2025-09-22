@@ -93,6 +93,7 @@ Infrastruktur bereitstellen: [Deployment](README.md#deployment)
 - AKS Cluster zeigen
     - Overview zeigen
     - Connect to AKS
+- Zeige `MG` Resource Group
 - Verwaltung über kubectl
     - Get resources
 
