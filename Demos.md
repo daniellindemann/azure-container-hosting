@@ -2,7 +2,11 @@
 
 ## Vor Demo
 
-Infrastruktur bereitstellen: [Deployment](README.md#deployment)
+- Infrastruktur bereitstellen: [Deployment](README.md#deployment)
+- Laptop Prep
+    - [ ] Alle unnötigen Programme aus Taskleiste schließen
+    - [ ] Teams beenden
+    - [ ] Energy saver aus
 
 ## App Demo erklären
 

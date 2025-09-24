@@ -141,3 +141,15 @@ Framework and Tools:
 Connections:
 
 ![Container dependencies](docs/static/container-dependencies.drawio.png)
+
+## Run locally with compose file
+
+1. Ensure [`docker compose`](https://docs.docker.com/compose/install/) or equivalent is available
+2. Build container images
+
+    ```bash
+    scripts/01-build-images.sh
+    ```
+
+3. Run `docker compose up` from project root folder
+4. Access applications via frontend: http://localhost:5179
