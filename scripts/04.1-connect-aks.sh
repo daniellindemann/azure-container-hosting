@@ -6,11 +6,6 @@ script_dir=$(dirname "$0")
 
 # script variables
 aks_starts_with='aks-azh-demo4-aks'
-keyvault_starts_with='kv-azh-shared'
-acr_starts_with='crazhshared'
-backend_image='daniellindemann/beer-rating-backend:9.0.0'
-frontend_image='daniellindemann/beer-rating-frontend:9.0.0'
-console_image='daniellindemann/beer-rating-console-beerquotes:9.0.0'
 
 echo "🔎 Get AKS cluster starting with '${aks_starts_with}'"
 aks_json_data=$(az aks list --query "[?starts_with(name, '${aks_starts_with}')].{name: name, resourceGroup: resourceGroup, keyVaultvIdentity: addonProfiles.azureKeyvaultSecretsProvider.identity}[0]" -o json)
