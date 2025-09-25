@@ -1,9 +1,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-website
+  name: beer-rating-frontend
   labels:
-    app: nginx-website-ingress
+    app: beer-rating-frontend
 spec:
   ingressClassName: nginx
   rules:
