@@ -5,7 +5,7 @@ FROM mcr.microsoft.com/dotnet/runtime:9.0-alpine AS base
 WORKDIR /app
 USER app
 
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG configuration=Release
 WORKDIR /src
 COPY ["Directory.Packages.props", "./"]
