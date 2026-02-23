@@ -4,7 +4,7 @@ param suffix string
 
 param enableKeyVaultPurgeProtection bool = false
 
-resource keyVault 'Microsoft.KeyVault/vaults@2024-11-01' = {
+resource keyVault 'Microsoft.KeyVault/vaults@2025-05-01' = {
   name: 'kv-azh-shared-${suffix}'
   location: location
   tags: tags

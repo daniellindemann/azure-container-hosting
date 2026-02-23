@@ -2,13 +2,13 @@ param location string
 param tags object
 param suffix string
 
-resource nsgWeb 'Microsoft.Network/networkSecurityGroups@2024-07-01' = {
+resource nsgWeb 'Microsoft.Network/networkSecurityGroups@2025-05-01' = {
   name: 'nsg-azh-demo5-webapps-vnet-${suffix}'
   location: location
   tags: tags
 }
 
-resource nsgRuleHttps 'Microsoft.Network/networkSecurityGroups/securityRules@2024-07-01' = {
+resource nsgRuleHttps 'Microsoft.Network/networkSecurityGroups/securityRules@2025-05-01' = {
   parent: nsgWeb
   name: 'AllowAnyHTTPSInbound'
   properties: {

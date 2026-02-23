@@ -18,11 +18,11 @@ var environmentVariablesArray = [
   }
 ]
 
-resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-02-01' existing = {
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-07-01' existing = {
   name: logAnalyticsWorkspaceName
 }
 
-resource containerInstance 'Microsoft.ContainerInstance/containerGroups@2024-10-01-preview' = {
+resource containerInstance 'Microsoft.ContainerInstance/containerGroups@2025-09-01' = {
   name: name
   location: location
   tags: tags

@@ -2,7 +2,7 @@ param location string
 param tags object
 param suffix string
 
-resource containerRegistry 'Microsoft.ContainerRegistry/registries@2025-04-01' = {
+resource containerRegistry 'Microsoft.ContainerRegistry/registries@2025-11-01' = {
   name: replace('cr-azh-shared-${suffix}', '-', '')
   location: location
   tags: tags

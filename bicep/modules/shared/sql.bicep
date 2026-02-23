@@ -44,11 +44,11 @@ resource sqlDb 'Microsoft.Sql/servers/databases@2023-08-01' = {
   }
 }
 
-resource keyVault 'Microsoft.KeyVault/vaults@2024-11-01' existing = {
+resource keyVault 'Microsoft.KeyVault/vaults@2025-05-01' existing = {
   name: keyVaultName
 }
 
-resource sqlAdminSecret 'Microsoft.KeyVault/vaults/secrets@2024-11-01' = {
+resource sqlAdminSecret 'Microsoft.KeyVault/vaults/secrets@2025-05-01' = {
   parent: keyVault
   name: 'connection-string-beer-rating'
   properties: {

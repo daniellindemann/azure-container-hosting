@@ -2,7 +2,7 @@ param location string
 param tags object
 param suffix string
 
-resource appServicePlan 'Microsoft.Web/serverfarms@2024-11-01' = {
+resource appServicePlan 'Microsoft.Web/serverfarms@2025-03-01' = {
   name: 'plan-azh-demo5-webapps-vnet-${suffix}'
   location: location
   tags: tags

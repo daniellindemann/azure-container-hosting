@@ -23,7 +23,7 @@ var environmentVariablesArray = [
   }
 ]
 
-resource containerApp 'Microsoft.App/containerApps@2025-01-01' = {
+resource containerApp 'Microsoft.App/containerApps@2025-07-01' = {
   name: name
   location: location
   tags: tags

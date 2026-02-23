@@ -10,7 +10,7 @@ param systemVmSize string = 'Standard_B2ms'
 
 var aksName = 'aks-azh-demo4-aks-${suffix}'
 
-resource aksCluster 'Microsoft.ContainerService/managedClusters@2025-05-01' = {
+resource aksCluster 'Microsoft.ContainerService/managedClusters@2025-10-01' = {
   name: aksName
   location: location
   tags: tags

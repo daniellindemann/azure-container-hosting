@@ -6,7 +6,7 @@ param suffix string
 
 param nsgWebId string
 
-resource vnet 'Microsoft.Network/virtualNetworks@2024-07-01' = {
+resource vnet 'Microsoft.Network/virtualNetworks@2025-05-01' = {
   name: 'vnet-azh-demo5-webapps-vnet-${suffix}'
   location: location
   tags: tags

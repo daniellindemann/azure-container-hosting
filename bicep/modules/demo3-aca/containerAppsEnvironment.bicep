@@ -7,11 +7,11 @@ param suffix string
 param managedIdentity managedIdentityReference
 param logAnalyticsWorkspaceName string
 
-resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-02-01' existing = {
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-07-01' existing = {
   name: logAnalyticsWorkspaceName
 }
 
-resource containerAppsEnvironment 'Microsoft.App/managedEnvironments@2025-01-01' = {
+resource containerAppsEnvironment 'Microsoft.App/managedEnvironments@2025-07-01' = {
   name: 'cae-azh-demo3-aca-${suffix}'
   location: location
   tags: tags

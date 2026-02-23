@@ -11,7 +11,7 @@ param containerImage string
 param appSettings object
 
 
-resource appService 'Microsoft.Web/sites@2024-11-01' = {
+resource appService 'Microsoft.Web/sites@2025-03-01' = {
   name: name
   location: location
   kind: 'app,linux,container'
@@ -39,7 +39,7 @@ resource appService 'Microsoft.Web/sites@2024-11-01' = {
   }
 }
 
-resource appServiceSettings 'Microsoft.Web/sites/config@2024-11-01' = {
+resource appServiceSettings 'Microsoft.Web/sites/config@2025-03-01' = {
   parent: appService
   name: 'appsettings'
   properties: appSettings

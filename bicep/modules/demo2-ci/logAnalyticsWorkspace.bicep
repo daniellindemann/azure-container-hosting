@@ -5,7 +5,7 @@ param suffix string
 @description('Daily cap in GB. Set to `-1` to disable the daily cap.')
 param dailyCapQuotaInGb int = 3
 
-resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-02-01' = {
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-07-01' = {
   name: 'log-azh-demo2-ci-${suffix}'
   location: location
   tags: tags

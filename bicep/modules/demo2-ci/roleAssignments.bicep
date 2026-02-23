@@ -7,11 +7,11 @@ var keyVaultSecretUserRole = subscriptionResourceId('Microsoft.Authorization/rol
 
 // --- Give identity 'Management' permissions to pull images from acr ---
 
-resource acr 'Microsoft.ContainerRegistry/registries@2025-04-01' existing = {
+resource acr 'Microsoft.ContainerRegistry/registries@2025-11-01' existing = {
   name: acrName
 }
 
-resource keyVault 'Microsoft.KeyVault/vaults@2024-11-01' existing = {
+resource keyVault 'Microsoft.KeyVault/vaults@2025-05-01' existing = {
   name: keyVaultName
 }
 

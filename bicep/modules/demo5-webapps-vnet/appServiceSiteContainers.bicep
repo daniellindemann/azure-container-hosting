@@ -16,7 +16,7 @@ param sideCarImage string
 param subnetIdAzureWebsitesOutbound string
 
 
-resource appService 'Microsoft.Web/sites@2024-11-01' = {
+resource appService 'Microsoft.Web/sites@2025-03-01' = {
   name: name
   location: location
   kind: 'app,linux,container'
@@ -48,7 +48,7 @@ resource appService 'Microsoft.Web/sites@2024-11-01' = {
   }
 }
 
-resource siteContainerMain 'Microsoft.Web/sites/sitecontainers@2024-11-01' = {
+resource siteContainerMain 'Microsoft.Web/sites/sitecontainers@2025-03-01' = {
   name: 'main'
   parent: appService
   properties: {
@@ -60,7 +60,7 @@ resource siteContainerMain 'Microsoft.Web/sites/sitecontainers@2024-11-01' = {
   }
 }
 
-resource siteContainerSidecar 'Microsoft.Web/sites/sitecontainers@2024-11-01' = {
+resource siteContainerSidecar 'Microsoft.Web/sites/sitecontainers@2025-03-01' = {
   name: 'sidecar'
   parent: appService
   properties: {
@@ -71,7 +71,7 @@ resource siteContainerSidecar 'Microsoft.Web/sites/sitecontainers@2024-11-01' = 
   }
 }
 
-resource appServiceSettings 'Microsoft.Web/sites/config@2024-11-01' = {
+resource appServiceSettings 'Microsoft.Web/sites/config@2025-03-01' = {
   parent: appService
   name: 'appsettings'
   properties: appSettings

@@ -6,7 +6,7 @@ param subnetIdAzureWebsitesInbound string
 param appServiceId string
 param privateDnsZoneWebsitesId string
 
-resource privateEndpointWebsitesBackend 'Microsoft.Network/privateEndpoints@2024-07-01' = {
+resource privateEndpointWebsitesBackend 'Microsoft.Network/privateEndpoints@2025-05-01' = {
   name: 'pep-azh-demo5-webapps-vnet-backend-${suffix}'
   location: location
   tags: tags
@@ -29,7 +29,7 @@ resource privateEndpointWebsitesBackend 'Microsoft.Network/privateEndpoints@2024
   }
 }
 
-resource privateEndpointDnsZoneGroupWebsitesBackend 'Microsoft.Network/privateEndpoints/privateDnsZoneGroups@2024-07-01' = {
+resource privateEndpointDnsZoneGroupWebsitesBackend 'Microsoft.Network/privateEndpoints/privateDnsZoneGroups@2025-05-01' = {
   parent: privateEndpointWebsitesBackend
   name: 'default'
   properties: {
