@@ -6,9 +6,9 @@ script_dir=$(dirname "$0")
 
 # script variables
 acr_starts_with='crazhshared'
-backend_image='daniellindemann/beer-rating-backend:9.0.0'
-frontend_image='daniellindemann/beer-rating-frontend:9.0.0'
-console_image='daniellindemann/beer-rating-console-beerquotes:9.0.0'
+backend_image='daniellindemann/beer-rating-backend:10.0.0'
+frontend_image='daniellindemann/beer-rating-frontend:10.0.0'
+console_image='daniellindemann/beer-rating-console-beerquotes:10.0.0'
 
 
 echo "🔎 Get ACR name starting with '${acr_starts_with}'"

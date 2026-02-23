@@ -7,6 +7,35 @@ set -euo pipefail
 
 script_dir=$(dirname "$0")
 
+# ensure docker builder with arm64 support is available
+ensure_docker_buildx_builder() {
+    if ! command -v docker &> /dev/null; then
+        echo "Docker CLI not found, skipping buildx builder setup"
+        return
+    fi
+
+    if ! docker buildx version &> /dev/null; then
+        echo "Docker buildx is not available, skipping builder setup"
+        return
+    fi
+
+    if docker buildx ls --format '{{.Name}}' | grep -qx 'mybuilder'; then
+        echo "Docker buildx builder 'mybuilder' already exists"
+        docker buildx use mybuilder
+        return
+    fi
+
+    if [ -z "$(docker buildx ls --format '{{.Name}}')" ]; then
+        echo "No docker buildx builder available. Creating 'mybuilder'"
+        docker buildx create --name mybuilder --use --bootstrap --platform linux/amd64,linux/arm64
+    else
+        echo "Docker buildx builder(s) exist, but not 'mybuilder'. Leaving current configuration unchanged"
+    fi
+}
+
+ensure_docker_buildx_builder
+
+
 # ensure temp directory exists
 ensure_temp_dir() {
     if [ ! -d "$script_dir/.temp" ]; then

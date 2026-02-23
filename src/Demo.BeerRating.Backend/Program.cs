@@ -21,7 +21,8 @@ else
 
 // configure application insights
 // if APPLICATIONINSIGHTS_CONNECTION_STRING is not available nothing will happen
-if(!builder.Environment.IsDevelopment())
+string appInsightsConnectionString = builder.Configuration.GetValue<string>("APPLICATIONINSIGHTS_CONNECTION_STRING") ?? string.Empty;
+if(!string.IsNullOrEmpty(appInsightsConnectionString))
 {
     builder.Services.AddApplicationInsightsTelemetry();
 }

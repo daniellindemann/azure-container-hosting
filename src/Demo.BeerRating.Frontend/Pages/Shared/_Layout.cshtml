@@ -1,4 +1,7 @@
-﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+﻿@inject IServiceProvider ServiceProvider
+@{
+    var javaScriptSnippet = ServiceProvider.GetService(typeof(Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet)) as Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +11,10 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     @* <link rel="stylesheet" href="~/Demo.BeerRating.styles.css" asp-append-version="true" /> *@
-    @Html.Raw(JavaScriptSnippet.FullScript)
+    @if (javaScriptSnippet is not null)
+    {
+        @Html.Raw(javaScriptSnippet.FullScript)
+    }
     <style>
         @await RenderSectionAsync("Css", required: false)
     </style>

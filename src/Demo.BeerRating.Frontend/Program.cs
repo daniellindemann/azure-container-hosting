@@ -2,6 +2,7 @@ using Demo.BeerRating.Frontend.HealthChecks;
 using Demo.BeerRating.Frontend.Options;
 using Demo.BeerRating.Frontend.Services;
 
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 using Microsoft.ApplicationInsights.Extensibility.Implementation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging.Console;
@@ -32,12 +33,10 @@ else
 }
 
 // configure application insights
-// if APPLICATIONINSIGHTS_CONNECTION_STRING is not available nothing will happen
-builder.Services.AddApplicationInsightsTelemetry();
-if(builder.Environment.IsDevelopment())
+string appInsightsConnectionString = builder.Configuration.GetValue<string>("APPLICATIONINSIGHTS_CONNECTION_STRING") ?? string.Empty;
+if(!string.IsNullOrEmpty(appInsightsConnectionString))
 {
-    // disable app insights tracing
-    TelemetryDebugWriter.IsTracingDisabled = true;
+    builder.Services.AddApplicationInsightsTelemetry();
 }
 
 builder.Services.Configure<BackendOptions>(builder.Configuration.GetSection("Backend"));

@@ -132,7 +132,7 @@ Applications:
 
 Framework and Tools:
 
-- .NET 9
+- .NET 10
     - ASP.NET
     - Entity Framework
 - Microsoft SQL Server
