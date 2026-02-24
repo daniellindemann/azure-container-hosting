@@ -42,9 +42,9 @@ module containerAppBackend 'demo3-aca/containerAppSidecar.bicep' = {
 
     environmentId: containerAppsEnvironment.outputs.id
     ingress: 'internal'
-    containerImageMain: 'daniellindemann/beer-rating-backend:9.0.0'
+    containerImageMain: 'daniellindemann/beer-rating-backend:10.0.0'
     containerPortMain: 5178
-    containerImageSidecar: 'daniellindemann/beer-rating-console-beerquotes:9.0.0'
+    containerImageSidecar: 'daniellindemann/beer-rating-console-beerquotes:10.0.0'
     environmentVariables: {
       Database__UseInMemoryDatabase: 'false'
       Database__UseAutoMigration: 'false'
@@ -65,7 +65,7 @@ module containerAppFrontend 'demo3-aca/containerApp.bicep' = {
 
     environmentId: containerAppsEnvironment.outputs.id
     ingress: 'external'
-    containerImageMain: 'daniellindemann/beer-rating-frontend:9.0.0'
+    containerImageMain: 'daniellindemann/beer-rating-frontend:10.0.0'
     containerPortMain: 5179
     environmentVariables: {
       Backend__HostUrl: 'https://${containerAppBackend.outputs.fqdn}'

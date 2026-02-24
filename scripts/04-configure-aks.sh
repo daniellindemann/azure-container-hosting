@@ -11,6 +11,7 @@ acr_starts_with='crazhshared'
 backend_image='daniellindemann/beer-rating-backend:10.0.0'
 frontend_image='daniellindemann/beer-rating-frontend:10.0.0'
 console_image='daniellindemann/beer-rating-console-beerquotes:10.0.0'
+nginxIngressVersion='1.14.3-azure'
 
 echo "🔎 Get AKS cluster starting with '${aks_starts_with}'"
 aks_json_data=$(az aks list --query "[?starts_with(name, '${aks_starts_with}')].{name: name, resourceGroup: resourceGroup, keyVaultvIdentity: addonProfiles.azureKeyvaultSecretsProvider.identity}[0]" -o json)
@@ -49,7 +50,7 @@ kubectl get nodes
 echo "Nodes retrieved"
 
 echo "Install nginx ingress controller"
-kubectl apply -f $script_dir/../k8s/ingress-controller-nginx.yaml
+kubectl apply -f $script_dir/../k8s/ingress-controller-nginx-${nginxIngressVersion}.yaml
 # check if ingress controller is running
 while true; do
     kubectl rollout status deployment/ingress-nginx-controller -n ingress-nginx --timeout=180s

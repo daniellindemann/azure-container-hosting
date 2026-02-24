@@ -40,9 +40,9 @@ module appServiceBackend 'demo5-webapps-vnet/appServiceSiteContainers.bicep' = {
     appServicePlanId: appServicePlan.outputs.id
     managedIdentity: managedIdentity
     acrLoginServer: acrLoginServer
-    containerImage: 'daniellindemann/beer-rating-backend:9.0.0'
+    containerImage: 'daniellindemann/beer-rating-backend:10.0.0'
     targetPortMainContainer: '5178'
-    sideCarImage: 'daniellindemann/beer-rating-console-beerquotes:9.0.0'
+    sideCarImage: 'daniellindemann/beer-rating-console-beerquotes:10.0.0'
     appSettings: {
       WEBSITES_PORT: '5178'
       Database__UseInMemoryDatabase: 'false'
@@ -82,7 +82,7 @@ module appServiceFrontend 'demo5-webapps-vnet/appService.bicep' = {
     appServicePlanId: appServicePlan.outputs.id
     managedIdentity: managedIdentity
     acrLoginServer: acrLoginServer
-    containerImage: 'daniellindemann/beer-rating-frontend:9.0.0'
+    containerImage: 'daniellindemann/beer-rating-frontend:10.0.0'
     appSettings: {
       WEBSITES_PORT: '5179'
       Backend__HostUrl: appServiceBackend.outputs.url

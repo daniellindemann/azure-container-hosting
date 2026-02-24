@@ -15,7 +15,7 @@ spec:
         app: beer-rating-frontend
     spec:
       containers:
-      - image: crazhsharedqdqzaqsx.azurecr.io/daniellindemann/beer-rating-frontend:9.0.0
+      - image: crazhsharedqdqzaqsx.azurecr.io/daniellindemann/beer-rating-frontend:10.0.0
         name: beer-rating-frontend
         imagePullPolicy: Always
         ports:

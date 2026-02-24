@@ -25,9 +25,9 @@ module ciBackend 'demo2-ci/containerInstanceSidecar.bicep' = {
 
     name: 'ci-azh-demo2-ci-backend-${suffix}'
     logAnalyticsWorkspaceName: logAnalyticsWorkspace.outputs.name
-    containerImageMain: 'daniellindemann/beer-rating-backend:9.0.0'
+    containerImageMain: 'daniellindemann/beer-rating-backend:10.0.0'
     containerPortMain: 5178
-    containerImageSidecar: 'daniellindemann/beer-rating-console-beerquotes:9.0.0'
+    containerImageSidecar: 'daniellindemann/beer-rating-console-beerquotes:10.0.0'
     acrLoginServer: acrLoginServer
     managedIdentity: managedIdentity
     connectionStringSecretUri: connectionStringKeyVaultUri
@@ -48,7 +48,7 @@ module ciFrontend 'demo2-ci/containerInstance.bicep' = {
 
     name: 'ci-azh-demo2-ci-frontend-${suffix}'
     logAnalyticsWorkspaceName: logAnalyticsWorkspace.outputs.name
-    containerImageMain: 'daniellindemann/beer-rating-frontend:9.0.0'
+    containerImageMain: 'daniellindemann/beer-rating-frontend:10.0.0'
     containerPortMain: 5179
     acrLoginServer: acrLoginServer
     managedIdentity: managedIdentity

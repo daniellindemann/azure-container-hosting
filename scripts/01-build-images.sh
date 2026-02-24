@@ -19,8 +19,8 @@ else
     docker buildx build \
         --file src/Demo.BeerRating.Backend/Dockerfile \
         --platform linux/amd64,linux/arm64 \
-        --tag beer-rating-backend:9.0.0 \
-        --tag daniellindemann/beer-rating-backend:9.0.0 \
+        --tag beer-rating-backend:10.0.0 \
+        --tag daniellindemann/beer-rating-backend:10.0.0 \
         --output type=docker \
         .
     echo '🏭 Forged backend container image'
@@ -30,8 +30,8 @@ else
     docker buildx build \
         --file src/Demo.BeerRating.Frontend/Dockerfile \
         --platform linux/amd64,linux/arm64 \
-        --tag beer-rating-frontend:9.0.0 \
-        --tag daniellindemann/beer-rating-frontend:9.0.0 \
+        --tag beer-rating-frontend:10.0.0 \
+        --tag daniellindemann/beer-rating-frontend:10.0.0 \
         --output type=docker \
         .
     echo '🧁 Forged backend container image'
@@ -41,8 +41,8 @@ else
     docker buildx build \
         --file src/Demo.BeerRating.Console.BeerQuotes/Dockerfile \
         --platform linux/amd64,linux/arm64 \
-        --tag beer-rating-console-beerquotes:9.0.0 \
-        --tag daniellindemann/beer-rating-console-beerquotes:9.0.0 \
+        --tag beer-rating-console-beerquotes:10.0.0 \
+        --tag daniellindemann/beer-rating-console-beerquotes:10.0.0 \
         --output type=docker \
         .
     echo '🏡 Constructed console container image'

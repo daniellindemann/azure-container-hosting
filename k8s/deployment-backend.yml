@@ -15,7 +15,7 @@ spec:
         app: beer-rating-backend
     spec:
       containers:
-      - image: crazhsharedqdqzaqsx.azurecr.io/daniellindemann/beer-rating-backend:9.0.0
+      - image: crazhsharedqdqzaqsx.azurecr.io/daniellindemann/beer-rating-backend:10.0.0
         name: beer-rating-backend
         imagePullPolicy: Always
         ports:
@@ -43,7 +43,7 @@ spec:
           limits:
             cpu: 250m
             memory: 256Mi
-      - image: crazhsharedqdqzaqsx.azurecr.io/daniellindemann/beer-rating-console-beerquotes:9.0.0
+      - image: crazhsharedqdqzaqsx.azurecr.io/daniellindemann/beer-rating-console-beerquotes:10.0.0
         name: beer-rating-console-beerquotes
         imagePullPolicy: Always
         env:
