@@ -2,7 +2,7 @@ param location string
 param tags object
 param suffix string
 
-param logAnalyticsWorkspaceId string
+param  logAnalyticsWorkspaceId string
 param entraAdminGroupObjectIds array
 param kubernetesVersion string = '1.34.2'
 param systemNodeCount int = 3
@@ -105,6 +105,12 @@ resource aksCluster 'Microsoft.ContainerService/managedClusters@2025-10-01' = {
       }
       workloadIdentity: {
         enabled: true
+      }
+      defender: {
+        logAnalyticsWorkspaceResourceId: logAnalyticsWorkspaceId
+        securityMonitoring: {
+          enabled: true
+        }
       }
     }
     storageProfile: {
