@@ -11,7 +11,7 @@ acr_starts_with='crazhshared'
 backend_image='daniellindemann/beer-rating-backend:10'
 frontend_image='daniellindemann/beer-rating-frontend:10'
 console_image='daniellindemann/beer-rating-console-beerquotes:10'
-nginxIngressVersion='1.14.3-azure'
+nginxIngressVersion='1.15.1-azure'
 
 echo "🔎 Get AKS cluster starting with '${aks_starts_with}'"
 aks_json_data=$(az aks list --query "[?starts_with(name, '${aks_starts_with}')].{name: name, resourceGroup: resourceGroup, keyVaultvIdentity: addonProfiles.azureKeyvaultSecretsProvider.identity}[0]" -o json)

@@ -11,7 +11,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-07
   name: logAnalyticsWorkspaceName
 }
 
-resource containerAppsEnvironment 'Microsoft.App/managedEnvironments@2025-07-01' = {
+resource containerAppsEnvironment 'Microsoft.App/managedEnvironments@2026-01-01' = {
   name: 'cae-azh-demo3-aca-${suffix}'
   location: location
   tags: tags

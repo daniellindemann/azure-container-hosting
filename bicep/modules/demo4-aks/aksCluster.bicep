@@ -4,13 +4,13 @@ param suffix string
 
 param  logAnalyticsWorkspaceId string
 param entraAdminGroupObjectIds array
-param kubernetesVersion string = '1.34.2'
+param kubernetesVersion string = '1.35.1'
 param systemNodeCount int = 3
 param systemVmSize string = 'Standard_B2ms'
 
 var aksName = 'aks-azh-demo4-aks-${suffix}'
 
-resource aksCluster 'Microsoft.ContainerService/managedClusters@2025-10-01' = {
+resource aksCluster 'Microsoft.ContainerService/managedClusters@2026-01-01' = {
   name: aksName
   location: location
   tags: tags
