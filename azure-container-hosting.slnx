@@ -1,0 +1,12 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/src/">
+    <Project Path="src/Demo.BeerRating.Backend/Demo.BeerRating.Backend.csproj" />
+    <Project Path="src/Demo.BeerRating.Console.BeerQuotes/Demo.BeerRating.Console.BeerQuotes.csproj" />
+    <Project Path="src/Demo.BeerRating.Frontend/Demo.BeerRating.Frontend.csproj" />
+  </Folder>
+</Solution>

@@ -6,6 +6,44 @@ script_dir=$(dirname "$0")
 
 # script variables
 useBake=true
+imageBackendNames=(
+    'beer-rating-backend'
+    'daniellindemann/beer-rating-backend'
+)
+imageFrontendNames=(
+    'beer-rating-frontend'
+    'daniellindemann/beer-rating-frontend'
+)
+imageConsoleNames=(
+    'beer-rating-console-beerquotes'
+    'daniellindemann/beer-rating-console-beerquotes'
+)
+imageTags=(
+    '10'
+    '10.0.200'
+    'latest'
+)
+
+# functions
+build_image() {
+    local dockerfile=$1
+    local -n names=$2
+    local -n tags=$3
+
+    local tag_args=()
+    for name in "${names[@]}"; do
+        for tag in "${tags[@]}"; do
+            tag_args+=(--tag "${name}:${tag}")
+        done
+    done
+
+    docker buildx build \
+        --file "$dockerfile" \
+        --platform linux/amd64,linux/arm64 \
+        "${tag_args[@]}" \
+        --output type=docker \
+        .
+}
 
 
 if [ "$useBake" = true ]; then
@@ -16,35 +54,17 @@ else
 
     # build backend
     echo '🏗️ Crafting backend container image'
-    docker buildx build \
-        --file src/Demo.BeerRating.Backend/Dockerfile \
-        --platform linux/amd64,linux/arm64 \
-        --tag beer-rating-backend:10.0.0 \
-        --tag daniellindemann/beer-rating-backend:10.0.0 \
-        --output type=docker \
-        .
+    build_image src/Demo.BeerRating.Backend/Dockerfile imageBackendNames imageTags
     echo '🏭 Forged backend container image'
 
     # build frontend
     echo '🖌️ Tinker frontend container image'
-    docker buildx build \
-        --file src/Demo.BeerRating.Frontend/Dockerfile \
-        --platform linux/amd64,linux/arm64 \
-        --tag beer-rating-frontend:10.0.0 \
-        --tag daniellindemann/beer-rating-frontend:10.0.0 \
-        --output type=docker \
-        .
-    echo '🧁 Forged backend container image'
+    build_image src/Demo.BeerRating.Frontend/Dockerfile imageFrontendNames imageTags
+    echo '🧁 Forged frontend container image'
 
     # build console
     echo '👷‍♂️ Build console container image'
-    docker buildx build \
-        --file src/Demo.BeerRating.Console.BeerQuotes/Dockerfile \
-        --platform linux/amd64,linux/arm64 \
-        --tag beer-rating-console-beerquotes:10.0.0 \
-        --tag daniellindemann/beer-rating-console-beerquotes:10.0.0 \
-        --output type=docker \
-        .
+    build_image src/Demo.BeerRating.Console.BeerQuotes/Dockerfile imageConsoleNames imageTags
     echo '🏡 Constructed console container image'
 
     popd

@@ -10,15 +10,31 @@ group "all" {
   ]
 }
 
+// variables
+variable "IMAGE_TAGS" {
+  default = ["10", "10.0.200", "latest"]
+}
+
+variable "BACKEND_NAMES" {
+  default = ["beer-rating-backend", "daniellindemann/beer-rating-backend"]
+}
+
+variable "FRONTEND_NAMES" {
+  default = ["beer-rating-frontend", "daniellindemann/beer-rating-frontend"]
+}
+
+variable "CONSOLE_NAMES" {
+  default = ["beer-rating-console-beerquotes", "daniellindemann/beer-rating-console-beerquotes"]
+}
+
 target "beer-rating-backend" {
   context = "."
   dockerfile = "src/Demo.BeerRating.Backend/Dockerfile"
-  tags = [
-    "beer-rating-backend:10.0.0",
-    "beer-rating-backend:latest",
-    "daniellindemann/beer-rating-backend:10.0.0",
-    "daniellindemann/beer-rating-backend:latest"
-  ]
+  tags = flatten([
+    for name in BACKEND_NAMES : [
+      for tag in IMAGE_TAGS : "${name}:${tag}"
+    ]
+  ])
   platforms = ["linux/amd64", "linux/arm64"]
   output = ["type=docker"]
 }
@@ -26,12 +42,11 @@ target "beer-rating-backend" {
 target "beer-rating-frontend" {
   context = "."
   dockerfile = "src/Demo.BeerRating.Frontend/Dockerfile"
-  tags = [
-    "beer-rating-frontend:10.0.0",
-    "beer-rating-frontend:latest",
-    "daniellindemann/beer-rating-frontend:10.0.0",
-    "daniellindemann/beer-rating-frontend:latest"
-  ]
+  tags = flatten([
+    for name in FRONTEND_NAMES : [
+      for tag in IMAGE_TAGS : "${name}:${tag}"
+    ]
+  ])
   platforms = ["linux/amd64", "linux/arm64"]
   output = ["type=docker"]
 }
@@ -39,12 +54,11 @@ target "beer-rating-frontend" {
 target "beer-rating-console-beerquotes" {
   context = "."
   dockerfile = "src/Demo.BeerRating.Console.BeerQuotes/Dockerfile"
-  tags = [
-    "beer-rating-console-beerquotes:10.0.0",
-    "beer-rating-console-beerquotes:latest",
-    "daniellindemann/beer-rating-console-beerquotes:10.0.0",
-    "daniellindemann/beer-rating-console-beerquotes:latest"
-  ]
+  tags = flatten([
+    for name in CONSOLE_NAMES : [
+      for tag in IMAGE_TAGS : "${name}:${tag}"
+    ]
+  ])
   platforms = ["linux/amd64", "linux/arm64"]
   output = ["type=docker"]
 }

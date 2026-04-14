@@ -9,6 +9,8 @@ script_dir=$(dirname "$0")
 
 # ensure docker builder with arm64 support is available
 ensure_docker_buildx_builder() {
+    builderName='mybuilder'
+
     if ! command -v docker &> /dev/null; then
         echo "Docker CLI not found, skipping buildx builder setup"
         return
@@ -19,20 +21,15 @@ ensure_docker_buildx_builder() {
         return
     fi
 
-    if docker buildx ls --format '{{.Name}}' | grep -qx 'mybuilder'; then
-        echo "Docker buildx builder 'mybuilder' already exists"
-        docker buildx use mybuilder
+    if docker buildx ls --format '{{.Name}}' | grep -qx "$builderName"; then
+        echo "Docker buildx builder '${builderName}' already exists"
+        docker buildx use $builderName
         return
     fi
 
-    if [ -z "$(docker buildx ls --format '{{.Name}}')" ]; then
-        echo "No docker buildx builder available. Creating 'mybuilder'"
-        docker buildx create --name mybuilder --use --bootstrap --platform linux/amd64,linux/arm64
-    else
-        echo "Docker buildx builder(s) exist, but not 'mybuilder'. Leaving current configuration unchanged"
-    fi
+    echo "Docker buildx builder '${builderName}' not found. Creating it"
+    docker buildx create --name "${builderName}" --use --bootstrap --platform linux/amd64,linux/arm64
 }
-
 ensure_docker_buildx_builder
 
 

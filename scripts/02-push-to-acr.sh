@@ -6,9 +6,14 @@ script_dir=$(dirname "$0")
 
 # script variables
 acr_starts_with='crazhshared'
-backend_image='daniellindemann/beer-rating-backend:10.0.0'
-frontend_image='daniellindemann/beer-rating-frontend:10.0.0'
-console_image='daniellindemann/beer-rating-console-beerquotes:10.0.0'
+backend_image='daniellindemann/beer-rating-backend'
+frontend_image='daniellindemann/beer-rating-frontend'
+console_image='daniellindemann/beer-rating-console-beerquotes'
+imageTags=(
+    '10'
+    '10.0.200'
+    'latest'
+)
 
 
 echo "🔎 Get ACR name starting with '${acr_starts_with}'"
@@ -19,19 +24,25 @@ echo "🗝️ Log in to ACR '${acr_name}'"
 az acr login --name $acr_name
 echo "🔓 Authenticated on ACR '${acr_name}'"
 
-echo "🫸 Push backend container image (${backend_image})"
-docker tag ${backend_image} ${acr_name}.azurecr.io/${backend_image}
-docker push ${acr_name}.azurecr.io/${backend_image}
-echo "🚀 Pushed backend container image (${backend_image})"
+for tag in "${imageTags[@]}"; do
+    echo "🫸 Push backend container image (${backend_image}:${tag})"
+    docker tag "${backend_image}:${tag}" "${acr_name}.azurecr.io/${backend_image}:${tag}"
+    docker push "${acr_name}.azurecr.io/${backend_image}:${tag}"
+    echo "🚀 Pushed backend container image (${backend_image}:${tag})"
+done
 
-echo "🫸 Push frontend container image (${frontend_image})"
-docker tag ${frontend_image} ${acr_name}.azurecr.io/${frontend_image}
-docker push ${acr_name}.azurecr.io/${frontend_image}
-echo "🚀 Pushed frontend container image (${frontend_image})"
+for tag in "${imageTags[@]}"; do
+    echo "🫸 Push frontend container image (${frontend_image}:${tag})"
+    docker tag "${frontend_image}:${tag}" "${acr_name}.azurecr.io/${frontend_image}:${tag}"
+    docker push "${acr_name}.azurecr.io/${frontend_image}:${tag}"
+    echo "🚀 Pushed frontend container image (${frontend_image}:${tag})"
+done
 
-echo "🫸 Push console container image (${console_image})"
-docker tag ${console_image} ${acr_name}.azurecr.io/${console_image}
-docker push ${acr_name}.azurecr.io/${console_image}
-echo "🚀 Pushed console container image (${console_image})"
+for tag in "${imageTags[@]}"; do
+    echo "🫸 Push console container image (${console_image}:${tag})"
+    docker tag "${console_image}:${tag}" "${acr_name}.azurecr.io/${console_image}:${tag}"
+    docker push "${acr_name}.azurecr.io/${console_image}:${tag}"
+    echo "🚀 Pushed console container image (${console_image}:${tag})"
+done
 
 echo '✅ Script finished!'

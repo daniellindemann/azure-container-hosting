@@ -8,9 +8,9 @@ script_dir=$(dirname "$0")
 aks_starts_with='aks-azh-demo4-aks'
 keyvault_starts_with='kv-azh-shared'
 acr_starts_with='crazhshared'
-backend_image='daniellindemann/beer-rating-backend:10.0.0'
-frontend_image='daniellindemann/beer-rating-frontend:10.0.0'
-console_image='daniellindemann/beer-rating-console-beerquotes:10.0.0'
+backend_image='daniellindemann/beer-rating-backend:10'
+frontend_image='daniellindemann/beer-rating-frontend:10'
+console_image='daniellindemann/beer-rating-console-beerquotes:10'
 nginxIngressVersion='1.14.3-azure'
 
 echo "🔎 Get AKS cluster starting with '${aks_starts_with}'"
