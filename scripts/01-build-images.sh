@@ -20,7 +20,7 @@ imageConsoleNames=(
 )
 imageTags=(
     '10'
-    '10.0.200'
+    '10.0.103'
     'latest'
 )
 

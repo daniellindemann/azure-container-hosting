@@ -12,7 +12,7 @@ group "all" {
 
 // variables
 variable "IMAGE_TAGS" {
-  default = ["10", "10.0.200", "latest"]
+  default = ["10", "10.0.103", "latest"]
 }
 
 variable "BACKEND_NAMES" {

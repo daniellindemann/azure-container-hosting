@@ -11,7 +11,7 @@ frontend_image='daniellindemann/beer-rating-frontend'
 console_image='daniellindemann/beer-rating-console-beerquotes'
 imageTags=(
     '10'
-    '10.0.200'
+    '10.0.103'
     'latest'
 )
 
